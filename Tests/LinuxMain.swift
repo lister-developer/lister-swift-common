@@ -1,7 +1,7 @@
 import XCTest
 
-import lister_commonTests
+import ListerCommonTests
 
 var tests = [XCTestCaseEntry]()
-tests += lister_commonTests.allTests()
+tests += ListerCommonTests.allTests()
 XCTMain(tests)
