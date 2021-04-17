@@ -7,7 +7,7 @@
 import Combine
 import Foundation
 
-protocol ViewModel: ObservableObject where ObjectWillChangePublisher.Output == Void {
+public protocol ViewModel: ObservableObject where ObjectWillChangePublisher.Output == Void {
     
     associatedtype State
     associatedtype Input
@@ -19,13 +19,13 @@ protocol ViewModel: ObservableObject where ObjectWillChangePublisher.Output == V
 }
 
 extension AnyViewModel: Identifiable where State: Identifiable {
-    var id: State.ID {
+    public var id: State.ID {
         state.id
     }
 }
 
 @dynamicMemberLookup
-final class AnyViewModel<State, Input>: ViewModel {
+public final class AnyViewModel<State, Input>: ViewModel {
     
     // MARK: Stored properties
     
@@ -37,17 +37,17 @@ final class AnyViewModel<State, Input>: ViewModel {
     
     // MARK: Computed properties
     
-    var objectWillChange: AnyPublisher<Void, Never> {
+    public var objectWillChange: AnyPublisher<Void, Never> {
         wrappedObjectWillChange()
     }
     
-    var state: State {
+    public var state: State {
         get {
             wrappedState()
         }
     }
     
-    var tipState: (status: Bool, message: String)  {
+    public var tipState: (status: Bool, message: String)  {
         get {
             wrappedTipState()
         }
@@ -59,7 +59,7 @@ final class AnyViewModel<State, Input>: ViewModel {
     
     // MARK: Methods
     
-    func apply(_ input: Input) {
+    public func apply(_ input: Input) {
         wrappedTrigger(input)
     }
     
