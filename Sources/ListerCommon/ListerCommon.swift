@@ -1,3 +1,3 @@
-struct lister_common {
+struct ListerCommon {
     var text = "Hello, World!"
 }

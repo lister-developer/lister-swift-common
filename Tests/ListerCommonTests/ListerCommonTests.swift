@@ -1,12 +1,12 @@
 import XCTest
-@testable import lister_common
+@testable import ListerCommon
 
-final class lister_commonTests: XCTestCase {
+final class ListerCommonTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(lister_common().text, "Hello, World!")
+        XCTAssertEqual(ListerCommon().text, "Hello, World!")
     }
 
     static var allTests = [
