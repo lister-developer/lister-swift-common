@@ -63,12 +63,12 @@ public final class AnyViewModel<State, Input>: ViewModel {
         wrappedTrigger(input)
     }
     
-    subscript<Value>(dynamicMember keyPath: KeyPath<State, Value>) -> Value {
+    public subscript<Value>(dynamicMember keyPath: KeyPath<State, Value>) -> Value {
         state[keyPath: keyPath]
     }
     
     // MARK: Initialization
-    init<V: ViewModel>(_ viewModel: V) where V.State == State, V.Input == Input {
+    public init<V: ViewModel>(_ viewModel: V) where V.State == State, V.Input == Input {
         self.wrappedObjectWillChange = { viewModel.objectWillChange.eraseToAnyPublisher() }
         self.wrappedState = { viewModel.state }
         self.wrappedTrigger = viewModel.apply
