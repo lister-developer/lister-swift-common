@@ -6,7 +6,7 @@
 
 import Foundation
 
-struct DateUtil {
+public struct DateUtil {
     
     
     /// 标准日期格式化为 年月日时分秒
