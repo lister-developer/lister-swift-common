@@ -1,20 +1,22 @@
 //
-//  Asynchronous.swift
-//  Id memo
+//  DateUtil.swift
 //
-//  Created by 李斯特 on 2021/4/8.
+//  Created by 李斯特 on 2021/3/8.
 //
 
 import Foundation
 
-public class Asynchronous {
+struct DateUtil {
     
-    /// 异步操作
-    /// - Parameter action: 异步执行的方法
-    static func async(_ run: @escaping () -> Void) {
-        DispatchQueue(label: "com.lister.queue.label", attributes: .concurrent).async {
-            run()
-        }
+    
+    /// 标准日期格式化为 年月日时分秒
+    /// - Parameter date: 日期时间
+    /// - Returns: 日期时间字符串
+    static func defaultDate2String(_ date: Date?) -> String {
+        guard date != nil else { return "" }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: date!)
     }
     
 }
