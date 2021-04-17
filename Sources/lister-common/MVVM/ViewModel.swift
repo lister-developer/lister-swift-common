@@ -18,12 +18,14 @@ protocol ViewModel: ObservableObject where ObjectWillChangePublisher.Output == V
     func apply(_ input: Input)
 }
 
+@available(OSX 10.15, *)
 extension AnyViewModel: Identifiable where State: Identifiable {
     var id: State.ID {
         state.id
     }
 }
 
+@available(OSX 10.15, *)
 @dynamicMemberLookup
 final class AnyViewModel<State, Input>: ViewModel {
     
