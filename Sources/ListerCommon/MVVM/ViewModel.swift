@@ -12,8 +12,6 @@ public protocol ViewModel: ObservableObject where ObjectWillChangePublisher.Outp
     associatedtype State
     associatedtype Input
     
-    // 提示信息状态
-    var tipState: (status: Bool, message: String) { get set }
     var state: State { get }
     func apply(_ input: Input)
 }
@@ -31,8 +29,6 @@ public final class AnyViewModel<State, Input>: ViewModel {
     
     private let wrappedObjectWillChange: () -> AnyPublisher<Void, Never>
     private let wrappedState: () -> State
-    private let wrappedTipState: () -> (Bool, String)
-    private let syncTipState: ((Bool, String)) -> Void
     private let wrappedTrigger: (Input) -> Void
     
     // MARK: Computed properties
@@ -44,15 +40,6 @@ public final class AnyViewModel<State, Input>: ViewModel {
     public var state: State {
         get {
             wrappedState()
-        }
-    }
-    
-    public var tipState: (status: Bool, message: String)  {
-        get {
-            wrappedTipState()
-        }
-        set {
-            syncTipState(newValue)
         }
     }
     
@@ -72,8 +59,6 @@ public final class AnyViewModel<State, Input>: ViewModel {
         self.wrappedObjectWillChange = { viewModel.objectWillChange.eraseToAnyPublisher() }
         self.wrappedState = { viewModel.state }
         self.wrappedTrigger = viewModel.apply
-        self.wrappedTipState = {viewModel.tipState}
-        self.syncTipState = { (tipState) in viewModel.tipState = tipState }
     }
     
 }
